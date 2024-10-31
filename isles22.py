@@ -16,7 +16,7 @@ from monai import transforms, data
 # from monai.networks import one_hot
 from monai.inferers import SlidingWindowInferer
 from monai.data.utils import decollate_batch
-from monai.network.nets import SegResNetDS
+from monai.networks.nets import SegResNetDS
 from monai.utils import UpsampleMode
 
 import sys
@@ -208,8 +208,8 @@ class SegResNetDSModel():
         flair_json_path = self.get_file_path(slug='flair-mri-acquisition-parameters', filetype='json')
 
         input_data = {'dwi_image': SimpleITK.ReadImage(str(dwi_image_path)), 'dwi_json': json.load(open(dwi_json_path)),
-            'adc_image': SimpleITK.ReadImage(str(adc_image_path)), 'adc_json': json.load(open(adc_json_path)),
-            'flair_image': SimpleITK.ReadImage(str(flair_image_path)), 'flair_json': json.load(open(flair_json_path))}
+                      'adc_image': SimpleITK.ReadImage(str(adc_image_path)), 'adc_json': json.load(open(adc_json_path)),
+                      'flair_image': SimpleITK.ReadImage(str(flair_image_path)), 'flair_json': json.load(open(flair_json_path))}
 
         # Set input information.
         input_filename = str(dwi_image_path).split('/')[-1]
@@ -288,7 +288,7 @@ def model_loader(modelweight_path):
 if __name__ == "__main__":
 
     dirname = os.path.dirname(__file__)
-    modelweight_path = os.path.join(dirname, 'weights/model')
+    modelweight_path = os.path.join(dirname, 'weights/2024-10-20SegResNetDS_j7953765_ts0')
     
     model = model_loader(modelweight_path)
     
