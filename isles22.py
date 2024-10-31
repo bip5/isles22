@@ -12,8 +12,8 @@ from torch.cuda.amp import autocast
 
 from monai import transforms, data
 # from monai.inferers import sliding_window_inference
-from monai.metrics import compute_meandice
-from monai.networks import one_hot
+# from monai.metrics import compute_meandice
+# from monai.networks import one_hot
 from monai.inferers import SlidingWindowInferer
 from monai.data.utils import decollate_batch
 from monai.network.nets import SegResNetDS
@@ -208,8 +208,8 @@ class SegResNetDSModel():
         flair_json_path = self.get_file_path(slug='flair-mri-acquisition-parameters', filetype='json')
 
         input_data = {'dwi_image': SimpleITK.ReadImage(str(dwi_image_path)), 'dwi_json': json.load(open(dwi_json_path)),
-                      'adc_image': SimpleITK.ReadImage(str(adc_image_path)), 'adc_json': json.load(open(adc_json_path)),
-                      'flair_image': SimpleITK.ReadImage(str(flair_image_path)), 'flair_json': json.load(open(flair_json_path))}
+            'adc_image': SimpleITK.ReadImage(str(adc_image_path)), 'adc_json': json.load(open(adc_json_path)),
+            'flair_image': SimpleITK.ReadImage(str(flair_image_path)), 'flair_json': json.load(open(flair_json_path))}
 
         # Set input information.
         input_filename = str(dwi_image_path).split('/')[-1]
@@ -283,7 +283,7 @@ def model_loader(modelweight_path):
     else:        
         model = wrap_model(checkpoint,model)   
 
-            return model
+        return model
             
 if __name__ == "__main__":
 
